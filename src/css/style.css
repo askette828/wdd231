@@ -91,14 +91,17 @@
 * {
   box-sizing: border-box;
 }
+
 img {
   max-width: 100%;
+  display: block;
 }
 
 body {
   font-family: var(--bs-body-font-family);
   font-size: 18px;
   margin: 0;
+  background-color: var(--bs-white);
 }
 
 a:link,
@@ -110,6 +113,13 @@ a:hover {
   color: var(--bs-link-hover-color);
 }
 
+/* Disclaimer Bar */
+.disclaimer {
+  font-size: 0.85rem;
+  margin: 0;
+  padding: 0.5rem 1rem;
+}
+
 /* Skip links styling */
 .skip-links ul {
   list-style-type: none;
@@ -118,7 +128,6 @@ a:hover {
 }
 
 .skip-links a {
-  font-size: 11px;
   font-size: 0.6875rem;
   position: absolute;
   right: 20px;
@@ -131,43 +140,112 @@ a:hover {
   z-index: 9999;
 }
 
-/* Title and logo styling */
+/* SVG Icon Sizing */
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+  background-color: transparent;
+}
+
+/* Global Header (NPS Bar) */
+.global-header {
+  background-color: var(--bs-black);
+  color: var(--bs-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
 
 .site-title {
   display: flex;
   align-items: center;
+  color: var(--bs-white) !important;
+  text-decoration: none;
 }
+
 .site-title > span {
   font-size: 1rem;
   margin-left: 0.3em;
+  font-weight: bold;
 }
 
-.logo {
-  height: 0;
-  width: 0;
-  margin: 0.5em;
-  display: inline-block;
-  border-top: 34px solid var(--bs-light-green);
-  border-left: 13px solid transparent;
-  border-right: 13px solid transparent;
+.global-header__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
 }
 
-/* Utility styles */
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  margin: -1px;
-  border: 0;
+.global-header__right a,
+.global-header__right button {
+  color: var(--bs-white);
+  background: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+  text-decoration: none;
   padding: 0;
-  white-space: nowrap;
-  clip-path: inset(100%);
-  clip: rect(0 0 0 0);
-  overflow: hidden;
 }
 
-svg {
+/* Park Hero Banner */
+.hero-banner {
+  position: relative;
+  width: 100%;
+}
+
+.hero-banner img {
+  width: 100%;
+  height: 260px;
+  object-fit: cover;
+}
+
+.hero-banner__content {
+  position: absolute;
+  bottom: 1rem;
+  left: 1rem;
+  color: var(--bs-white);
+  text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.hero-banner__title {
+  margin: 0;
+  font-size: 2.2rem;
+  font-weight: normal;
+  line-height: 1.1;
+}
+
+.hero-banner_subtitle {
+  margin: 0;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Park Navigation Bar */
+.park-nav {
   background-color: var(--bs-black);
-  fill: white;
+}
+
+.park-nav ul {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem 0;
+}
+
+.park-nav a {
+  color: var(--bs-white) !important;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  font-size: 0.75rem;
+  gap: 0.2rem;
 }
