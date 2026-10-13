@@ -1,3 +1,55 @@
+const baseUrl = "https://developer.nps.gov/api/v1/";
+const apiKey = import.meta.env.VITE_NPS_API_KEY;
+
+async function getJson(url) {
+  const options = {
+    method: "GET",
+    headers: {
+      "X-Api-Key": apiKey
+    }
+  };
+  const response = await fetch(baseUrl + url, options);
+  if (response.ok) {
+    const data = await response.json();
+    return data;
+  } else {
+    throw new Error("response not ok");
+  }
+}
+
+export async function getParkData(parkCode = "yell") {
+  const parkData = await getJson(`parks?parkCode=${parkCode}`);
+  return parkData.data[0];
+}
+
+const parkInfoLinks = [
+  {
+    name: "Current Conditions",
+    link: "conditions.html",
+    image: ""
+  },
+  {
+    name: "Fees & Passes",
+    link: "fees.html",
+    image: ""
+  },
+  {
+    name: "Visitor Centers",
+    link: "visitorcenters.html",
+    image: ""
+  }
+];
+
+export function getInfoLinks(images = []) {
+  return parkInfoLinks.map((link, index) => {
+    return {
+      ...link,
+      image: images[index] ? images[index].url : link.image
+    };
+  });
+}
+
+/*
 const park = {
   id: "F58C6D24-8D10-4573-9826-65D42B8B83AD",
   url: "https://www.nps.gov/yell/index.htm",
@@ -178,7 +230,4 @@ const park = {
   name: "Yellowstone",
   designation: "National Park"
 };
-
-export function getParkData() {
-  return park;
-}
+*/
